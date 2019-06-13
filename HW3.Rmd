@@ -41,6 +41,17 @@ D(w_{it}|\bar{w}_{i.},\bar{w}_{.t},\bar{\bar{w}})=w_{it}-\bar{w}_{i.}-\bar{w}_{.
 $$
 說明對廣義固定效果模型左右式一起進行$D(.)$函數的demean轉換可以去除$c_i$及$\delta_t$兩個固定效果。
 
+$$\bar{y}_{i}=\frac{\sum_{t=1}^T y_{it}}
+{T}=\bar{x}_{i}'\beta+c_{i}+\frac{\sum_{t=1}^T \delta_{t}}
+{T}+\bar\epsilon_{i}$$
+
+$$\bar{y}_{t}=\frac{\sum_{i=1}^N y_{it}}{N}=\bar{x}_{t}'\beta+\frac{\sum_{i=1}^N c_{i}}{N}+\delta_{t}+\bar\epsilon_{t}$$
+
+$$\bar{\bar{y}}_{t}=\frac{\sum_i\sum_t y_{it}}{NT}=\frac{\sum_{i=1}^N}{N}(\frac{\sum_{t=1}^T y_{it}}{T})=\frac{\sum_{i=1}^N(\bar{x}_{i}'\beta+c_{i}+\frac{\sum_{t=1}^T\delta_{t}}{T}+\bar\epsilon_{i})}{N}=\bar{x'}\beta+\frac{\sum_{i=1}^Nc_{i}}{N}+\frac{\sum_{i=1}^N\sum_{t=1}^T \delta_{t}}{NT}+\frac{\sum_{i=1}^N\bar\epsilon_{i}}{N}$$
+
+$$y_{it}-\bar{y}_{i}-\bar{y}_{t}+\bar{\bar{y}}=(x'_{it}\beta-\bar{x'}_{i}\beta-\bar{x'}_{t}\beta+\bar{x'}\beta)+(\epsilon_{it}-\bar\epsilon_{i}-\bar\epsilon_{t}+\bar\epsilon),所以c_{i},\delta_{t}會被消掉$$
+
+
 ## 3 Panel data的迴歸殘差
 考慮迴歸模型：
 $$
@@ -63,7 +74,11 @@ cov()=0 且E(v_{it})=0
 
 令$\sigma_{\alpha}^2=V(\alpha_i)$，$\sigma_{v}^2=V(v_{it})$，及$\sigma_{\alpha,v}=cov(\alpha_i,v_{it})$
 
+根據information decomposition v_{it}與\alpha_i獨立所以 $$E(v_{it}\alpha_{i})=cov(v_{it},\alpha_i)+E(v_{it})E(\alpha_i)=0$$其中因為v_{it}與\alpha_i獨立所以cov()=0 且E(v_{it})=0
+
 （3）說明$cov(\alpha_i,v_{it})=0$且推導$V(\epsilon_{it})$，及$cov(\epsilon_{it},\epsilon_{is})$當$t\neq s$。
+
+
 
 （4）由於家戶單位為隨機抽出，我們可以假設對任意的s及t，$cov(\epsilon_{it},\epsilon_{js})=0$當$i\neq j$（即任兩不同家戶的迴歸模型殘差無關）。
 
